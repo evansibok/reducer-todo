@@ -36,10 +36,20 @@ function App() {
     })
   }
 
+  const clearCompleted = evt => {
+    evt.preventDefault();
+    dispatch({
+      type: types.CLEAR_COMPLETED,
+      payload: {
+        todos: state.todos.filter(todo => todo.completed === false)
+      }
+    })
+  }
+
   return (
     <div className="App">
       <TodoList todos={state.todos} toggleComplete={toggleComplete} />
-      <TodoForm text={state.text} onValueChange={onValueChange} addTodo={addTodo} />
+      <TodoForm text={state.text} onValueChange={onValueChange} addTodo={addTodo} clearCompleted={clearCompleted} />
     </div>
   );
 }

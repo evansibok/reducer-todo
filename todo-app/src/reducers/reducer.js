@@ -22,6 +22,11 @@ export function reducer(state, action) {
 				...state,
 				todos: [...action.payload.todos]
 			}
+		case types.CLEAR_COMPLETED:
+			return {
+				...state,
+				todos: [...action.payload.todos]
+			}
 		default:
 			return state;
 	}
