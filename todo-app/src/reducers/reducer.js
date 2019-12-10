@@ -1,6 +1,7 @@
+import * as types from './actionTypes'
 
 export const initialState = {
-	todoList: [
+	todos: [
 		{
 			item: 'Learn about reducers',
 			completed: false,
@@ -9,8 +10,17 @@ export const initialState = {
 	]
 }
 
-export default function reducer(state, action) {
+export function reducer(state, action) {
 	switch (action.type) {
+		case types.INPUT_CHANGE:
+			return {
+				...state,
+				[action.payload.name]: action.payload.value
+			}
+		case types.ADD_TODO:
+			return {
+				...state.todos,
+			}
 		default:
 			return state;
 	}
