@@ -27,9 +27,18 @@ function App() {
     })
   }
 
+  const toggleComplete = id => {
+    dispatch({
+      type: types.TOGGLE_COMPLETE,
+      payload: {
+        todos: state.todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo)
+      }
+    })
+  }
+
   return (
     <div className="App">
-      <TodoList todos={state.todos} />
+      <TodoList todos={state.todos} toggleComplete={toggleComplete} />
       <TodoForm text={state.text} onValueChange={onValueChange} addTodo={addTodo} />
     </div>
   );

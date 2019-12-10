@@ -1,13 +1,7 @@
 import * as types from './actionTypes'
 
 export const initialState = {
-	todos: [
-		{
-			item: 'Learn about reducers',
-			completed: false,
-			id: Date.now()
-		}
-	],
+	todos: [],
 	text: '',
 }
 
@@ -22,6 +16,11 @@ export function reducer(state, action) {
 			return {
 				text: "",
 				todos: [...state.todos, action.payload]
+			}
+		case types.TOGGLE_COMPLETE:
+			return {
+				...state,
+				todos: [...action.payload.todos]
 			}
 		default:
 			return state;
