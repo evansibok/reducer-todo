@@ -5,9 +5,10 @@ export const initialState = {
 		{
 			item: 'Learn about reducers',
 			completed: false,
-			id: 3892987589
+			id: Date.now()
 		}
-	]
+	],
+	text: '',
 }
 
 export function reducer(state, action) {
@@ -15,11 +16,12 @@ export function reducer(state, action) {
 		case types.INPUT_CHANGE:
 			return {
 				...state,
-				[action.payload.name]: action.payload.value
+				text: action.payload
 			}
 		case types.ADD_TODO:
 			return {
-				...state.todos,
+				text: "",
+				todos: [...state.todos, action.payload]
 			}
 		default:
 			return state;

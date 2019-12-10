@@ -8,29 +8,29 @@ import TodoForm from './components/todoForm';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
-  console.log(state.todos)
 
   const onValueChange = evt => {
     dispatch({
       type: types.INPUT_CHANGE,
-      payload: {
-        ...state,
-        [evt.target.name]: evt.target.value
-      }
+      payload: evt.target.value
     });
   }
 
-  const addTodo = todo => {
+  const addTodo = () => {
     dispatch({
       type: types.ADD_TODO,
-      payload: [...state.todos, todo],
+      payload: {
+        id: Date.now(),
+        completed: false,
+        item: state.text
+      },
     })
   }
 
   return (
     <div className="App">
       <TodoList todos={state.todos} />
-      <TodoForm todos={state.todos} onValueChange={onValueChange} addTodo={addTodo} />
+      <TodoForm text={state.text} onValueChange={onValueChange} addTodo={addTodo} />
     </div>
   );
 }
